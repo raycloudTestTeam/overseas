@@ -6,7 +6,7 @@
 
 from page.BasePage import Action
 from selenium.webdriver.common.by import  By
-value = "f543ddf6a675a96ae47702d2bb732b29586274cd621bc78b3fdd7e92d7b45217ff56a327f8239a022236ba9a6fcc103f"
+value = ""
 
 class Login(Action):
 
