@@ -12,7 +12,7 @@ class Login(Action):
 
     @staticmethod
     def __user():
-        return [u"Jon",u"Aa000000"]
+        return [u"",u""]
 
     # 这个不行，每次都要获取最新的cookies
     def cookie_login(self,login_cookie=""):
