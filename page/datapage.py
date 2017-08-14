@@ -18,9 +18,15 @@ class DataPage():
 
  # tab页切换通用 -start
     def tab_click(self,tab_name):
-        nav = self.dr.find_element_by_class_name("tab-nav")
-        tab = nav.find_element_by_xpath("//div[contains(text(),'"+tab_name+"')]")
-        tab.click()
+        try:
+            nav = self.dr.find_element_by_class_name("tab-nav")
+            tab = nav.find_element_by_xpath("//div[contains(text(),'"+tab_name+"')]")
+            tab.click()
+            sleep(1)
+            return "True:进入"+tab_name+"-成功"
+        except:
+            text = ComPage(self.dr).get_alert_value()
+            return "False:进入"+tab_name+"-失败-"+text
 # tab页切换通用 -end
 
 # 选择行业切换 -start level_1  一级菜单  2 二级菜单
