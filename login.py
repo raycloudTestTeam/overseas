@@ -6,14 +6,17 @@
 
 from page.BasePage import Action
 from selenium.webdriver.common.by import  By
+from data_driven.txthandle import *
 value = ""
 
 class Login(Action):
 
     @staticmethod
     def __user():
-        return [u"",u""]
-
+        user = TxtHandle().read_txt("user")
+        for u in user:
+            U = u.split(',')
+            return U
     # 这个不行，每次都要获取最新的cookies
     def cookie_login(self,login_cookie=""):
         # print(str(self))

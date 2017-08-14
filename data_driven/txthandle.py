@@ -12,7 +12,7 @@ class TxtHandle(object):
         if filename =="":
             print(u"文件名不能为空")
         else:
-            file = open("app/static/data/%s.txt" %filename)
+            file = open("../data_driven/%s.txt" %filename)
             for line in  file:
                 txt_result.append(line)
             return txt_result
@@ -23,7 +23,7 @@ class TxtHandle(object):
             if content =="":
                 return False
             else:
-                file = open("app/static/data/%s.txt" %filename,'w')
+                file = open("../data_driven/%s.txt" %filename,'w')
                 if type == 1:
                     file.write(content)
                 else:
