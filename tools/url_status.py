@@ -48,6 +48,8 @@ class URL_Status(unittest.TestCase):
                     pass
                 elif "script" in link:
                     pass
+                elif "static.superseller.cn" in link:
+                    pass
                 else:
                     link = "http://overseas.superseller.cn"+link
                     try:
