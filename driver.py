@@ -28,7 +28,8 @@ class Driver():
                 return driver
             elif self.browser == "HtmlUnit":
                 # 需要先启用 selenium-server
-                driver = webdriver.Remote(self.url,desired_capabilities=webdriver.DesiredCapabilities.HTMLUNITWITHJS)
+                driver = webdriver.Remote("http://127.0.0.1:4444/wd/hub/",
+                                          desired_capabilities=webdriver.DesiredCapabilities.HTMLUNITWITHJS)
                 return driver
             else: # 谷歌
                 driver = webdriver.Chrome()
