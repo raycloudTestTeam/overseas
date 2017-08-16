@@ -6,6 +6,8 @@
 from selenium import webdriver
 from  selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import  By
+from selenium.webdriver.common.keys import Keys
+from data_driven.txthandle import *
 import sys
 
 # 暂时不考虑亚马逊
@@ -30,7 +32,8 @@ class Action(object):
             WebDriverWait(self.driver,10).until(lambda driver:driver.find_element(*loc).is_displayed())
             return  self.driver.find_element(*loc)
         except:
-            print(u"%s 页面未找到 %s 元素" %(self,loc))
+
+            print(u"%s 页面未找到 %s 元素,弹出框报错:%s" %(self,loc,str(self.alert_msg())))
 
     # 重写 switch_frame
     def switch_frame(self,loc):

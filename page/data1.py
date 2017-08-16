@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #@Author : Wu
 #@Time : 2017/8/7 16:58
-#@File : datapage.py
+#@File : data1.py
 #@remark : 数据模块
 from selenium.webdriver.common.action_chains import ActionChains
 from  page.compage import  *

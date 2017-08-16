@@ -9,7 +9,7 @@ from driver import *
 from login import *
 from time import sleep
 from  page.compage import *
-from page.datapage import *
+from page.data1 import *
 
 url="https://overseas.superseller.cn/index.html#/data/analysis/"
 class DataTestCase(unittest.TestCase):
