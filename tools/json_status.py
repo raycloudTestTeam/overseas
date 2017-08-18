@@ -36,6 +36,7 @@ class Json_Status(unittest.TestCase):
             json_list = XmlHandle().get_elements("online_api","json")
             for j in json_list:
                 url = XmlHandle().get_item_value(j,"url") # json链接
+                url = "https://overseas.superseller.cn/"+url
                 type_name = XmlHandle().get_item_value(j,"type") # 传递类型
                 pare = XmlHandle().get_item_value(j,"pars") # 参数类型
                 if type_name == "POST":
@@ -48,13 +49,24 @@ class Json_Status(unittest.TestCase):
                         print("%s 的返回状态为%s" %(url,coll))
 
                 else:
-                    coll = requests.get(url,cookies=self.user)
+                    dic={}
+                    if pare =="":
+                        pass
+                    else:
+                        args = str(pare).split(',')
+                        print(args)
+                        for ar in args:
+                            r = ar.split("=")
+                            dic[r[0]]=r[1]
+                        print(dic)
+
+                    coll = requests.get(url,cookies=self.user,params=dic)
                     code_status = coll.status_code
                     if code_status == 200:
                         status = coll.json()["result"]
-                        print("%s 的返回状态为%s" %(url,status))
+                        print("%s 的result返回状态为%s" %(url,status))
                     else:
-                        print("%s 的返回状态为%s" %(url,coll))
+                        print("%s 的接口链接报错为%s" %(url,coll))
         except:
             print(str(sys.exc_info()))
 
