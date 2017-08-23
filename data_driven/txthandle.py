@@ -6,6 +6,8 @@
 import random
 from data_driven.comhandle import *
 import logging
+import sys
+import types
 class TxtHandle(object):
 
     # 读取txt
@@ -22,19 +24,25 @@ class TxtHandle(object):
             return txt_result
 
     # 写入txt 1覆盖写入，2不覆盖写入
-    def write_txt(self,filename,content,type):
+    def write_txt(self,filename,content,t=1):
         try:
             if content =="":
                 return False
             else:
                 file = open(ComHandle().DATA_DIRS()+"\\%s.txt" %filename,'w')
-                if type == 1:
-                    file.write(content)
+                if t == 1:
+                    if isinstance(content,list):
+                        for i in content:
+                            file.write(i)
+                            file.write(",")
+                    else:
+                        file.write(content)
                     file.close()
                 else:
                     pass
                 return True
         except:
+            print(str(sys.exc_info()))
             return False
 
 

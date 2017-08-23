@@ -46,7 +46,7 @@ class DataAction(Action):
 
         elif name == u"取消关注":
             buttons.find_element_by_css_selector(mi+"mr_10.J_focus-items").click()
-        sleep(1)
+        sleep(2)
 
         # 产品id、店铺id获取
     def get_id(self,name="goods"):
@@ -64,6 +64,7 @@ class DataAction(Action):
             new_item = goods.split(',')
             goods_id = random.sample(new_item,1)
             new_item.remove(goods_id[0])
+            print(str(new_item))
             TxtHandle().write_txt("shopee_goodids",new_item,1)
             return str(goods_id[0])
 
@@ -97,5 +98,6 @@ class DataAction(Action):
 
 
 
-
+if __name__ =="__main__":
+    DataAction("a").get_id()
 
