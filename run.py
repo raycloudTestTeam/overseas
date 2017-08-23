@@ -5,7 +5,6 @@
 #@remark : 集合跑测试用例
 import unittest
 # 将需要运行的测试用例放入suit测试套件
-from testcase.datacase import *
 
 
 

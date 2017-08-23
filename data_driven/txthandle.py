@@ -3,7 +3,9 @@
 #@Time : 2017/8/7 16:57
 #@File : txthandle.py
 #@remark : txt文件操作相关
-
+import random
+from data_driven.comhandle import *
+import logging
 class TxtHandle(object):
 
     # 读取txt
@@ -12,9 +14,11 @@ class TxtHandle(object):
         if filename =="":
             print(u"文件名不能为空")
         else:
-            file = open("../data_driven/file_path/%s.txt" %filename)
+
+            file = open(ComHandle().DATA_DIRS()+"\\%s.txt" %filename)
             for line in  file:
                 txt_result.append(line)
+            file.close()
             return txt_result
 
     # 写入txt 1覆盖写入，2不覆盖写入
@@ -23,11 +27,18 @@ class TxtHandle(object):
             if content =="":
                 return False
             else:
-                file = open("../data_driven/file_path/%s.txt" %filename,'w')
+                file = open(ComHandle().DATA_DIRS()+"\\%s.txt" %filename,'w')
                 if type == 1:
                     file.write(content)
+                    file.close()
                 else:
                     pass
                 return True
         except:
             return False
+
+
+
+
+if __name__ =="__main__":
+    pass

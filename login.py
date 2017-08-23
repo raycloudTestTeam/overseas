@@ -7,6 +7,8 @@
 from page.BasePage import Action
 from selenium.webdriver.common.by import  By
 from data_driven.txthandle import *
+from time import sleep
+import logging
 value = ""
 
 class Login(Action):
@@ -28,12 +30,16 @@ class Login(Action):
             self.driver.add_cookie(login_cookie)
 
     def login(self):
-        iframe = self.find_element(By.TAG_NAME,"iframe")
+        iframe = self.find_ele(By.TAG_NAME,"iframe")
         self.switch_frame(iframe)
-        self.driver.find_element(By.NAME, "userName").send_keys(self.__user()[0])
-        self.driver.find_element(By.NAME, "pwd").send_keys(self.__user()[1])
-        btn = self.driver.find_element(By.CSS_SELECTOR, "#loginPanel > div.btn.primary-btn.J_login")
+        self.find_ele(By.NAME, "userName").send_keys(self.__user()[0])
+        self.find_ele(By.NAME, "pwd").send_keys(self.__user()[1])
+        btn = self.find_ele(By.CSS_SELECTOR, "#loginPanel > div.btn.primary-btn.J_login")
         btn.click()
+        sleep(2)
+        logging.info(str(self.__user())+u"登录成功")
+
+
 
 
 

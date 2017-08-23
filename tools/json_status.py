@@ -16,8 +16,9 @@ class Json_Status(unittest.TestCase):
 
     def setUp(self):
         self.user = {}
-        self.dr = Driver(url="",browser="HtmlUnit").start()
-        self.dr.get("http://overseas.superseller.cn/index.html#/index/work/")
+        # browser="HtmlUnit"
+        self.dr = Driver(url="http://overseas.superseller.cn/index.html#/index/work/").start()
+        # self.dr.get("")
         sleep(0.5)
         self.dr.maximize_window()
         Login(self.dr).login()
@@ -49,7 +50,7 @@ class Json_Status(unittest.TestCase):
                         print("%s 的返回状态为%s" %(url,coll))
 
                 else:
-                    dic={}
+                    di={}
                     if pare =="":
                         pass
                     else:
@@ -57,10 +58,10 @@ class Json_Status(unittest.TestCase):
                         print(args)
                         for ar in args:
                             r = ar.split("=")
-                            dic[r[0]]=r[1]
-                        print(dic)
+                            di[r[0]]=r[1]
+                        print(di)
 
-                    coll = requests.get(url,cookies=self.user,params=dic)
+                    coll = requests.get(url,cookies=self.user,params=di)
                     code_status = coll.status_code
                     if code_status == 200:
                         status = coll.json()["result"]
