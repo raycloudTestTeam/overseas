@@ -14,16 +14,16 @@ class SShopPage(DataAction):
         try:
             self.data_search(content)
             self.data_search_click()
+            sleep(1)
             if len(self.table_td())>=1:
-                log(u"检索成功")
-                sleep(1)
+                # log(u"检索成功")
                 return "success"
             else:
-                log(u"未检索到该id")
+                log(u"店铺检索--未检索到该id")
                 return "failed"
 
         except:
-            log("店铺检索失败报错:%s|%s" %(self.alert_msg(),str(sys.exc_info())))
+            log("店铺检索--失败报错:%s|%s" %(self.alert_msg(),str(sys.exc_info())))
 
     # 店铺关注并校验(暂时只支持全选，不支持自定义勾选)
     def focus(self):
@@ -31,14 +31,13 @@ class SShopPage(DataAction):
             self.check_all()
             self.focus_items(u"关注")
             re = self.alert_msg()
-            if u"成功" in re:
-                log(u"店铺检索关注成功")
-                return "success"
-            else:
-                log(u"店铺检索关注失败")
-                return "failed"
+            #if u"成功" in re:
+            log("店铺检索："+re)
+            '''if u"成功" in re:
+                return "success"'''
+
         except:
-            log("店铺检索关注失败报错:%s|%s" %(self.alert_msg(),str(sys.exc_info())))
+            log("店铺检索--关注失败报错:%s|%s" %(self.alert_msg(),str(sys.exc_info())))
 
 
 

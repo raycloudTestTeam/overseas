@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import  By
 from selenium.webdriver.common.keys import Keys
 from data_driven.txthandle import *
 import sys
+from time import sleep
 import logging
 
 # 暂时不考虑亚马逊
@@ -60,6 +61,7 @@ class Action(object):
             alert = self.find_ele(By.CLASS_NAME,"ui_content")
             re = alert.find_element_by_class_name("ft_20")
             msg = re.text
+            sleep(1)
             return msg
         except:
             # print(u"未找到弹出框")

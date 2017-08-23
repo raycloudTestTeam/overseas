@@ -16,6 +16,7 @@ class DataTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = Driver(url="https://overseas.superseller.cn/index.html#/data/").start()
+        # cls.driver.get("https://overseas.superseller.cn/index.html#/data/")
         Login(cls.driver).login()
         cls.driver.maximize_window()
 
@@ -33,41 +34,41 @@ class DataTest(unittest.TestCase):
         shop_id = shop_search.get_id("shop")
         item_id = shop_search.get_id("good")
         log(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程开始")
-        shop_search.search(shop_id)
-        shop_search.focus()
+        re = shop_search.search(shop_id)
+        if re =="success":
+            shop_search.focus()
 
         # 取消关注店铺
         url = "https://overseas.superseller.cn/index.html#/data_shopee/shop_me/"
         SShopMePage(self.driver).open_tab(url)
         shop_me = SShopMePage(self.driver)
-        re = shop_me.search(shop_id)
-        if re =="success":
+        shop_re = shop_me.search(shop_id)
+        if shop_re =="success":
             shop_me.no_focus()
 
-        # 关注产品
+        # 产品检索
         url = "https://overseas.superseller.cn/index.html#/data_shopee/search_item/"
         SItemPage(self.driver).open_tab(url)
         item_search = SItemPage(self.driver)
-        item_search.search(item_id)
-        if re == "success":
-            item_search.focus()
+        item_re = item_search.search(item_id)
+        if item_re == "success":
+            # item_search.focus()
+            # SItemPage(self.driver).find_ele(By.NAME,"allId").click()
             # 产品采集
             item_search.collect()
 
         #取消关注产品
-        url= "https://overseas.superseller.cn/index.html#/data_shopee/item_me/"
+        url = "https://overseas.superseller.cn/index.html#/data_shopee/item_me/"
         SItemMePage(self.driver).open_tab(url)
         item_me = SItemMePage(self.driver)
-        re = item_me.search(item_id)
-        if re == "success":
-            item_me.collect()
+        me_re = item_me.search(item_id)
+        if me_re == "success":
+            # item_me.collect()
+            # SItemMePage(self.driver).find_ele(By.NAME,"teamAllId").click()
+            #self.driver.find_element_by_name("teamAllId").click()
             item_me.no_focus()
-
+        sleep(2)
         log(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程结束")
-
-
-
-
 
 if __name__ =="__main__":
     unittest.main(verbosity=2)

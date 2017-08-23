@@ -13,9 +13,11 @@ class DataAction(Action):
     # 查询操作
     def data_search(self,content):
         self.find_ele(By.NAME,"mixedCondition2").send_keys(content)
+        sleep(1)
 
     def data_search_click(self):
         self.find_ele(By.NAME,"mixedCondition2").send_keys(Keys.ENTER)
+        sleep(1)
 
     # 获取table tr 个数
     def table_td(self):
@@ -26,6 +28,7 @@ class DataAction(Action):
     # table 全选
     def check_all(self):
         self.find_ele(By.NAME,"teamAllId").click()
+        sleep(1)
 
     def open_tab(self,url):
         js = "window.open('"+url+"')"
@@ -33,6 +36,7 @@ class DataAction(Action):
         self.driver.close()
         sleep(1)
         self.driver.switch_to.window(self.driver.window_handles[0])
+        sleep(1)
 
     # 列表操作按钮列表点击
     def focus_items(self,name):
@@ -47,7 +51,7 @@ class DataAction(Action):
 
         elif name == u"取消关注":
             buttons.find_element_by_css_selector(mi+"mr_10.J_focus-items").click()
-        sleep(2)
+        sleep(1)
 
         # 产品id、店铺id获取
     def get_id(self,name="goods"):
@@ -72,11 +76,13 @@ class DataAction(Action):
 
     # 采集弹出框,返回预计采集
     def collect_win(self):
-        win = self.find_ele(By.CLASS_NAME,u"ui_content")
-        value = win.find_element_by_clss_name("title").text
-        log(str(value))
-        return str(value)
-
+        try:
+            win = self.find_ele(By.CLASS_NAME,u"ui_content")
+            value = win.find_element_by_class_name("title").text
+            log(str(value))
+            return str(value)
+        except:
+            return DataAction(self.driver).alert_msg()
 
     # 采集弹出框-确认
     def collect_win_ok(self):
@@ -85,16 +91,20 @@ class DataAction(Action):
 
     # 采集进度确定
     def collecting(self):
+        count = 0
+        while (count < 30):
 
-        for i in  range(1,30):
-            persent = self.driver.find_element_by_class_name("persent-num").text
-            if i == 30:
-                logging.info(u"采集失败，采集进度：%s" % str(persent))
-            if "100" in persent:
-                context = self.driver.find_element_by_class_name("process-context")
-                logging.info(str(context))
-                self.driver.find_element_by_xpath("//*[@data-info='close']").click()
-                break
+            count =count+1
+            if count > 29:
+                persent = self.driver.find_element_by_class_name("persent-num").text
+                if "100" in persent:
+                    context = self.driver.find_element_by_class_name("process-context").text
+                    log(str(context))
+                    self.driver.find_element_by_xpath("//*[@data-info='close']").click()
+                    break
+                else:
+                    log(u"采集失败，采集进度：%s" % str(persent))
+                    break
 
 
 

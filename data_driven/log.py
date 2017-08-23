@@ -9,13 +9,13 @@ from data_driven.comhandle import *
 
 logging.basicConfig(
         level=logging.INFO,
-        format='%(asctime)s - %(message)s ',
+        format='%(asctime)s - %(message)s',
         datefmt= '%d %b %H:%M:%S',
-        filename= ComHandle().DATA_DIRS()+'\\super.log',
-        filemode='w'
+        filename= ComHandle().DATA_DIRS()+'\\super.log'
     )
 def log(msg):
     logging.info(msg)
+    logging.info("*******************")
 
     '''logging.basicConfig(
         level=logging.INFO,
