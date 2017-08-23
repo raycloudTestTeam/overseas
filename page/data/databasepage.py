@@ -7,6 +7,7 @@ from page.BasePage import *
 from selenium.webdriver.common.by import  By
 from data_driven.txthandle import *
 from time import sleep
+from data_driven.log import *
 class DataAction(Action):
 
     # 查询操作
@@ -64,7 +65,7 @@ class DataAction(Action):
             new_item = goods.split(',')
             goods_id = random.sample(new_item,1)
             new_item.remove(goods_id[0])
-            print(str(new_item))
+            # print(str(new_item))
             TxtHandle().write_txt("shopee_goodids",new_item,1)
             return str(goods_id[0])
 
@@ -73,7 +74,7 @@ class DataAction(Action):
     def collect_win(self):
         win = self.find_ele(By.CLASS_NAME,u"ui_content")
         value = win.find_element_by_clss_name("title").text
-        logging.info(str(value))
+        log(str(value))
         return str(value)
 
 

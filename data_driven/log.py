@@ -8,23 +8,34 @@ import logging
 from data_driven.comhandle import *
 
 logging.basicConfig(
-    level=logging.INFO,
-    format= '%(asctime)s:%(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-    datefmt= '%a, %d %b %Y %H:%M:%S',
-    filename= ComHandle().DATA_DIRS()+'\\super.log',
-    filemode='w'
-)
-logging.basicConfig(
-    level=logging.ERROR,
-    format= '%(asctime)s:%(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-    datefmt= '%a, %d %b %Y %H:%M:%S',
-    filename= ComHandle().DATA_DIRS()+'\\super.log',
-    filemode='w'
+        level=logging.INFO,
+        format='%(asctime)s - %(message)s ',
+        datefmt= '%d %b %H:%M:%S',
+        filename= ComHandle().DATA_DIRS()+'\\super.log',
+        filemode='w'
+    )
+def log(msg):
+    logging.info(msg)
+
+    '''logging.basicConfig(
+        level=logging.INFO,
+        format='%(filename)s[line:%(lineno)d] %(message)s ',
+        datefmt= '%d %b %H:%M:%S',
+        filename= ComHandle().DATA_DIRS()+'\\super.log',
+        filemode='w'
+    )
+    logging.basicConfig(
+        level=logging.ERROR,
+        # format= '%(asctime)s:%(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+        format='%(filename)s[line:%(lineno)d] %(message)s ',
+        datefmt= '%d %b %H:%M:%S',
+        filename= ComHandle().DATA_DIRS()+'\\super.log',
+        filemode='w'
 )
 logging.basicConfig(
     level=logging.DEBUG,
-    format= '%(asctime)s:%(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-    datefmt= '%a, %d %b %Y %H:%M:%S',
+    format='%(filename)s[line:%(lineno)d] %(message)s ',
+    datefmt= '%d %b %H:%M:%S',
     filename=ComHandle().DATA_DIRS()+'\\super.log',
     filemode='w'
-)
+)'''

@@ -8,7 +8,7 @@ from page.BasePage import Action
 from selenium.webdriver.common.by import  By
 from data_driven.txthandle import *
 from time import sleep
-import logging
+from data_driven.log import *
 value = ""
 
 class Login(Action):
@@ -37,7 +37,7 @@ class Login(Action):
         btn = self.find_ele(By.CSS_SELECTOR, "#loginPanel > div.btn.primary-btn.J_login")
         btn.click()
         sleep(2)
-        logging.info(str(self.__user())+u"登录成功")
+        log(str(self.__user())+u"登录成功")
 
 
 

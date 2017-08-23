@@ -32,7 +32,7 @@ class DataTest(unittest.TestCase):
         shop_search = SShopPage(self.driver)
         shop_id = shop_search.get_id("shop")
         item_id = shop_search.get_id("good")
-        logging.info(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程开始")
+        log(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程开始")
         shop_search.search(shop_id)
         shop_search.focus()
 
@@ -63,7 +63,7 @@ class DataTest(unittest.TestCase):
             item_me.collect()
             item_me.no_focus()
 
-        logging.info(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程结束")
+        log(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程结束")
 
 
 
