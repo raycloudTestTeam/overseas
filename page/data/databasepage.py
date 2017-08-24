@@ -68,9 +68,9 @@ class DataAction(Action):
             goods = str(goods_list[0])
             new_item = goods.split(',')
             goods_id = random.sample(new_item,1)
-            new_item.remove(goods_id[0])
+            #new_item.remove(goods_id[0])
             # print(str(new_item))
-            TxtHandle().write_txt("shopee_goodids",new_item,1)
+            # TxtHandle().write_txt("shopee_goodids",new_item,1)
             return str(goods_id[0])
 
 
@@ -91,24 +91,18 @@ class DataAction(Action):
 
     # 采集进度确定
     def collecting(self):
-        count = 0
-        while (count < 30):
-
-            count =count+1
-            if count > 29:
-                persent = self.driver.find_element_by_class_name("persent-num").text
-                if "100" in persent:
+        while 1:
+            try:
+                self.persent = self.driver.find_element_by_class_name("persent-num").text
+                if "100" in self.persent:
                     context = self.driver.find_element_by_class_name("process-context").text
                     log(str(context))
                     self.driver.find_element_by_xpath("//*[@data-info='close']").click()
                     break
-                else:
-                    log(u"采集失败，采集进度：%s" % str(persent))
-                    break
-
-
-
-
+            except:
+                # persent = self.driver.find_element_by_class_name("persent-num").text
+                log(u"采集失败，采集进度：%s"% self.persent)
+                break
 if __name__ =="__main__":
     DataAction("a").get_id()
 
