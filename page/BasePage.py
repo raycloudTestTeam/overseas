@@ -10,7 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from data_driven.txthandle import *
 import sys
 from time import sleep
-import logging
+from data_driven.log import *
 
 # 暂时不考虑亚马逊
 top_menu_list ={"工作台":"index_nav","数据":"data_nav","产品":"inventory_nav","上架":"product_nav",
@@ -51,6 +51,7 @@ class Action(object):
                 left_nav = self.find_ele(By.CLASS_NAME, "new-left-ul")
                 me = left_nav.find_ele(By.XPATH, "//a[contains(text(),'"+kwargs["name"]+"')]")
                 me.click()
+            log(u"菜单：%s --点击" % kwargs["name"])
         except:
             logging.error(u"%s 元素未找到，弹出框报错：%s" % (kwargs["name"],self.alert_msg()))
 
@@ -81,6 +82,15 @@ class Action(object):
             else:
                 erp_pages.find_ele("last-page").click()
         except:
-             logging.error(u"%s 操作 翻页失败 --- %s" %(type,self.alert_msg()))
+             log(u"%s 操作 翻页失败 --- %s" %(type,self.alert_msg()))
              pass
+
+    def open_tab(self,url):
+        js = "window.open('"+url+"')"
+        self.driver.execute_script(js)
+        self.driver.close()
+        sleep(1)
+        self.driver.switch_to.window(self.driver.window_handles[0])
+        sleep(1)
+        log(u"%s -- 页面打开:%s" % (self.driver.title,self.alert_msg()))
 

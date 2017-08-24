@@ -13,15 +13,14 @@ class SItemMePage(DataAction):
         try:
             self.data_search(content)
             self.data_search_click()
-            if len(self.table_td())>=1:
-                #logging.info(u"关注的产品检索成功")
-                #sleep(1)
-                return "success"
+            if len(self.table_tr())>=1:
+                log(u"关注的产品--检索id成功")
+                # return "success"
             else:
                 log(u"关注的产品--未检索到该id-确认是否关注/采集成功")
-                return "failed"
+                # return "failed"
         except:
-            logging.info("关注的产品--检索失败报错:%s" %(self.alert_msg()))
+            log("关注的产品--检索失败报错:%s" %(self.alert_msg()))
             print(str(sys.exc_info()))
 
     # 取消关注
@@ -50,6 +49,7 @@ class SItemMePage(DataAction):
             self.focus_items(u"采集")
             coll = self.collect_win()
             if u"已采集" in coll:
+                log(u"该产品已经被采集")
                 self.find_ele(By.NAME,"teamAllId").click()
             else:
                 self.collect_win_ok()
@@ -58,3 +58,16 @@ class SItemMePage(DataAction):
         except:
             log("采集失败报错:%s" %(self.alert_msg()))
             print(str(sys.exc_info()))
+
+    # 选择第一个产品进入详情页
+    def to_detail(self):
+        try:
+            tr = self.table_tr()[0]
+            tr.find_element_by_class_name("text-ellipsis").click()
+            sleep(1)
+            # return "success"
+            log(u"进入产品详情页")
+        except:
+            log(u"产品详情页打开失败：%s" %self.alert_msg())
+            print(str(sys.exc_info()))
+

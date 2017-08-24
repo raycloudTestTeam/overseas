@@ -15,12 +15,13 @@ class SShopPage(DataAction):
             self.data_search(content)
             self.data_search_click()
             sleep(1)
-            if len(self.table_td())>=1:
+            if len(self.table_tr())>=1:
                 # log(u"检索成功")
-                return "success"
+                log(u"店铺检索-查询id成功")
+                # return "success"
             else:
                 log(u"店铺检索--未检索到该id")
-                return "failed"
+                # return "failed"
 
         except:
             log("店铺检索--失败报错:%s|%s" %(self.alert_msg(),str(sys.exc_info())))
@@ -38,8 +39,3 @@ class SShopPage(DataAction):
 
         except:
             log("店铺检索--关注失败报错:%s|%s" %(self.alert_msg(),str(sys.exc_info())))
-
-
-
-if __name__ =="__main__":
-    pass

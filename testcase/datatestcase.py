@@ -34,39 +34,29 @@ class DataTest(unittest.TestCase):
         shop_id = shop_search.get_id("shop")
         item_id = shop_search.get_id("good")
         log(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程开始")
-        re = shop_search.search(shop_id)
-        if re =="success":
-            shop_search.focus()
+        shop_search.search(shop_id)
+        shop_search.focus()
 
         # 取消关注店铺
         url = "https://overseas.superseller.cn/index.html#/data_shopee/shop_me/"
         SShopMePage(self.driver).open_tab(url)
         shop_me = SShopMePage(self.driver)
-        shop_re = shop_me.search(shop_id)
-        if shop_re =="success":
-            shop_me.no_focus()
+        shop_me.search(shop_id)
+        shop_me.no_focus()
 
         # 产品检索
         url = "https://overseas.superseller.cn/index.html#/data_shopee/search_item/"
         SItemPage(self.driver).open_tab(url)
         item_search = SItemPage(self.driver)
-        item_re = item_search.search(item_id)
-        if item_re == "success":
-            # item_search.focus()
-            # SItemPage(self.driver).find_ele(By.NAME,"allId").click()
-            # 产品采集
-            item_search.collect()
+        item_search.search(item_id)
+        item_search.collect()
 
         #取消关注产品
         url = "https://overseas.superseller.cn/index.html#/data_shopee/item_me/"
         SItemMePage(self.driver).open_tab(url)
         item_me = SItemMePage(self.driver)
-        me_re = item_me.search(item_id)
-        if me_re == "success":
-            # item_me.collect()
-            # SItemMePage(self.driver).find_ele(By.NAME,"teamAllId").click()
-            #self.driver.find_element_by_name("teamAllId").click()
-            item_me.no_focus()
+        item_me.search(item_id)
+        item_me.no_focus()
         sleep(2)
         log(u"店铺："+shop_id+u"|产品："+item_id+u"---虾皮数据流程结束")
 

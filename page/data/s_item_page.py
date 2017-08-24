@@ -14,13 +14,10 @@ class SItemPage(DataAction):
             self.data_search(content)
             self.data_search_click()
             sleep(1)
-            if len(DataAction(self.driver).table_td())>=1:
-                # log(u"产品检索成功")
-                # sleep(1)
-                return "success"
+            if len(DataAction(self.driver).table_tr())>=1:
+                log(u"产品检索---查询id成功")
             else:
                 log(u"产品检索--未检索到该产品id")
-                return "failed"
 
         except:
             log("产品检索--失败报错:%s" % DataAction(self.driver).alert_msg())
@@ -31,7 +28,7 @@ class SItemPage(DataAction):
         try:
             self.find_ele(By.NAME,"allId").click()
             self.focus_items(u"关注")
-            re = DataAction(self.driver).alert_msg()
+            re = self.alert_msg()
             log("产品检索："+re)
             '''if u"成功" in re:
                 # log(u"产品检索-关注成功")
@@ -40,7 +37,8 @@ class SItemPage(DataAction):
                 log(u"产品检索-关注失败")
                 return "failed"'''
         except:
-            log("产品检索--关注失败报错:%s|%s" %(DataAction(self.driver).alert_msg()))
+            log("产品检索--关注失败报错:%s|%s" %(self.alert_msg()))
+
     # 产品采集
     def collect(self):
 
@@ -56,5 +54,5 @@ class SItemPage(DataAction):
                 self.collecting()
 
         except:
-            log("产品检索--采集报错:%s" %(DataAction(self.driver).alert_msg()))
+            log("产品检索--采集报错:%s" %(self.alert_msg()))
             print(str(sys.exc_info()))

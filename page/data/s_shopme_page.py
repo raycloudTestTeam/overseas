@@ -12,12 +12,12 @@ class SShopMePage(DataAction):
             self.data_search(content)
             self.data_search_click()
             sleep(1)
-            if len(self.table_td())>=1:
-                # log(u"关注的店铺检索成功")
-                return "success"
+            if len(self.table_tr())>=1:
+                log(u"关注的店铺-检索id成功")
+                # return "success"
             else:
                 log(u"关注的店铺--未检索到该id")
-                return "failed"
+                # return "failed"
         except:
             log("关注的店铺--检索失败报错:%s|%s" %(self.alert_msg(),str(sys.exc_info())))
 

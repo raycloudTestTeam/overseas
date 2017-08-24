@@ -20,7 +20,7 @@ class DataAction(Action):
         sleep(1)
 
     # 获取table tr 个数
-    def table_td(self):
+    def table_tr(self):
         table =  self.find_ele(By.CLASS_NAME,"data-simple-table")
         trs = table.find_elements_by_class_name("tr-item")
         return trs
@@ -30,13 +30,7 @@ class DataAction(Action):
         self.find_ele(By.NAME,"teamAllId").click()
         sleep(1)
 
-    def open_tab(self,url):
-        js = "window.open('"+url+"')"
-        self.driver.execute_script(js)
-        self.driver.close()
-        sleep(1)
-        self.driver.switch_to.window(self.driver.window_handles[0])
-        sleep(1)
+
 
     # 列表操作按钮列表点击
     def focus_items(self,name):
@@ -82,7 +76,8 @@ class DataAction(Action):
             log(str(value))
             return str(value)
         except:
-            return DataAction(self.driver).alert_msg()
+            log(u"采集弹出框打开：%s" %self.alert_msg())
+            return self.alert_msg()
 
     # 采集弹出框-确认
     def collect_win_ok(self):
@@ -103,6 +98,14 @@ class DataAction(Action):
                 # persent = self.driver.find_element_by_class_name("persent-num").text
                 log(u"采集失败，采集进度：%s"% self.persent)
                 break
-if __name__ =="__main__":
-    DataAction("a").get_id()
+
+    def detail_tab_check(self,name):
+        try:
+            ul = self.find_ele(By.CSS_SELECTOR,"ul.tab-nav.clearfix")
+            tab = ul.find_element_by_xpath("div[contains(text(),u'"+name+"')]")
+            tab.click()
+            sleep(1)
+            log(u"切换%s失败：%s" % (name,self.alert_msg()))
+        except:
+            print(u"找不到该tab：%s" % name)
 
