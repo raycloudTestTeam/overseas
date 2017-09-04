@@ -25,9 +25,23 @@ class SItemDetailPage(DataAction):
             con = buttons.find_element_by_class_name("button-container")
             if name == u"前往产品查看":
                 con.find_element_by_class_name("J_goto-product").click()
+            elif name ==u"关注产品":
+                con.find_element_by_css_selector("div.btn.btn-success").click()
+                sleep(1)
+                log(u"产品关注："+self.alert_msg())
+            elif name == u"采集到本地":
+                con.find_element_by_css_selector("div.btn.btn-primary").click()
+                sleep(0.5)
+                ui_content = self.driver.find_element_by_class_name("ui_content")
+                title = ui_content.find_element_by_class_name("title").text
+                log(title)
+                ui_content.find_elements_by_tag_name("span")[1].click()
+                sleep(0.5)
+                log(self.alert_msg())
             else:
-                con.find_element_by_xpath("//div[contains(text(),'"+name+"')]").click()
-            log(u"产品详情页：%s--点击" % name)
+                con.find_element_by_css_selector("div.btn.btn-cancel").click()
+                log(self.alert_msg())
+            # log(u"产品详情页：%s--点击" % name)
             sleep(1)
         except:
             log(u"产品详情页：%s，报错：%s" % (name,self.alert_msg()))

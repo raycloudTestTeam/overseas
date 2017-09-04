@@ -14,7 +14,7 @@ class CateAction(Action):
         self.find_ele(By.NAME,"keyword").send_keys(Keys.ENTER)
 
     def table_ele(self):
-        body = self.find_ele(By.CLASS_NAME,"erp-table-tbody")
-        data = body.find_elements_by_class_name("erp-image-hover-div")
-        return data
+        body = self.find_ele(By.CLASS_NAME,"erp-table")
+        # data = body.find_element_by_class_name("erp-image-hover-div")
+        return body
 
