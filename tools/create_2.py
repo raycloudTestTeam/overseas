@@ -10,7 +10,7 @@ from login import *
 from driver import *
 from selenium.webdriver.common.action_chains import ActionChains
 
-class NewOrder(unittest.TestCase):
+class NewOrder2(unittest.TestCase):
 
     def setUp(self):
         url = "https://overseas.superseller.cn/index.html#/trade/list/?status=BUYER_PAY_END"
@@ -22,8 +22,7 @@ class NewOrder(unittest.TestCase):
         self.driver.quit()
 
     def test_order_create(self):
-        '''
-        for i in range(40,100):
+        for i in range(100,150):
             self.driver.refresh()
             sleep(2)
             buttons = self.driver.find_element_by_css_selector("div.f-lt.trade-operation")
@@ -63,11 +62,10 @@ class NewOrder(unittest.TestCase):
             b = self.driver.find_element_by_class_name("dialog_bottom")
 
             b.find_elements_by_tag_name("span")[1].click()
-            sleep(1)'''
-        #sleep(2)
-
-        for i in range(0,100):
-            item = self.driver.find_elements_by_xpath("//div[@data-tradetype='4']")[i]
+            sleep(1)
+        sleep(2)
+        items = self.driver.find_elements_by_xpath("//div[@data-tradetype='4']")
+        for item in items:
             ActionChains(self.driver).double_click(item).perform()
             sleep(1)
             pd = self.driver.find_element_by_class_name("ui_content")
@@ -82,11 +80,10 @@ class NewOrder(unittest.TestCase):
             box.find_element_by_name("weight").send_keys("1")
             box.find_elements_by_xpath("//span[@data-action='save']")[3].click()
             # box.find_element_by_partial_link_text(u"保存").click()
+
             sleep(3)
             self.driver.find_element_by_class_name("ui_close").click()
             sleep(2)
-
-            # al = self.driver.find_elements_by_xpath("//div[@data-tradetype='4']")[0]
 
 if __name__ =="__main__":
     unittest.main(verbosity=2)

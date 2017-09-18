@@ -14,11 +14,16 @@ value = ""
 class Login(Action):
 
     @staticmethod
-    def __user():
-        user = TxtHandle().read_txt("user")
+    def __user(t="test"):
+        if t=="test":
+            user = TxtHandle().read_txt("user")
+        else:
+            user = TxtHandle().read_txt("user_on")
+
         for u in user:
             U = u.split(',')
             return U
+
     # 这个不行，每次都要获取最新的cookies
     def cookie_login(self,login_cookie=""):
         # print(str(self))
@@ -29,15 +34,25 @@ class Login(Action):
         else:
             self.driver.add_cookie(login_cookie)
 
-    def login(self):
-        iframe = self.find_ele(By.TAG_NAME,"iframe")
-        self.switch_frame(iframe)
-        self.find_ele(By.NAME, "userName").send_keys(self.__user()[0])
-        self.find_ele(By.NAME, "pwd").send_keys(self.__user()[1])
-        btn = self.find_ele(By.CSS_SELECTOR, "#loginPanel > div.btn.primary-btn.J_login")
-        btn.click()
-        sleep(2)
-        log(str(self.__user())+u"登录成功")
+    def login(self,t="test"):
+        try:
+            iframe = self.find_elem(self.driver.find_element_by_css_selector("iframe[frameborder='0']"))
+            self.switch_frame(iframe)
+            user = self.__user(t)
+            self.find_elem(self.driver.find_element_by_name("userName")).send_keys(user[0])
+            self.find_elem(self.driver.find_element_by_name("pwd")).send_keys(user[1])
+            login_button = self.driver.find_element_by_css_selector("[class~='J_login']")
+            login_button.click()
+            sleep(1)
+            print("登录成功")
+            log(str(self.__user())+u"登录成功")
+            return "True"
+        except:
+            print("登录失败")
+            log(str(self.__user())+u"登录失败")
+            return "False"
+
+
 
 
 

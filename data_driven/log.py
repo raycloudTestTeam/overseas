@@ -17,25 +17,3 @@ def log(msg):
     logging.info(msg)
     logging.info("*******************")
 
-    '''logging.basicConfig(
-        level=logging.INFO,
-        format='%(filename)s[line:%(lineno)d] %(message)s ',
-        datefmt= '%d %b %H:%M:%S',
-        filename= ComHandle().DATA_DIRS()+'\\super.log',
-        filemode='w'
-    )
-    logging.basicConfig(
-        level=logging.ERROR,
-        # format= '%(asctime)s:%(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-        format='%(filename)s[line:%(lineno)d] %(message)s ',
-        datefmt= '%d %b %H:%M:%S',
-        filename= ComHandle().DATA_DIRS()+'\\super.log',
-        filemode='w'
-)
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(filename)s[line:%(lineno)d] %(message)s ',
-    datefmt= '%d %b %H:%M:%S',
-    filename=ComHandle().DATA_DIRS()+'\\super.log',
-    filemode='w'
-)'''

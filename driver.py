@@ -31,8 +31,16 @@ class Driver():
                 driver = webdriver.Remote("http://127.0.0.1:4444/wd/hub/",
                                           desired_capabilities=webdriver.DesiredCapabilities.HTMLUNITWITHJS)
                 return driver
-            else: # 谷歌
+
+            elif self.browser =="Chrome":
                 driver = webdriver.Chrome()
+                driver.get(self.url)
+                return driver
+            else: # 谷歌
+                #
+
+                driver = webdriver.Remote(command_executor='http://192.168.50.162:1111/wd/hub',
+                                          desired_capabilities=webdriver.DesiredCapabilities.CHROME)
                 driver.get(self.url)
                 return driver
 

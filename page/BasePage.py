@@ -30,7 +30,15 @@ class Action(object):
         except:
             logging.info("元素：%s 未找到"%loc)
             pass
-
+    # 等待元素加载显性等待（重写）
+    def find_elem(self,ele):
+        try:
+            WebDriverWait(self.driver, 10, 0.5).until(lambda x: ele.is_displayed())
+            return ele
+        except:
+            print(str(sys.exc_info()))
+            log("元素：%s 未找到" % ele)
+            pass
 
     # 重写 switch_frame
     def switch_frame(self,loc):
@@ -55,14 +63,19 @@ class Action(object):
         except:
             logging.error(u"%s 元素未找到，弹出框报错：%s" % (kwargs["name"],self.alert_msg()))
 
+    # 顶部菜单栏操作
 
     # 报错弹出框内容获取
     def alert_msg(self):
         try:
-            alert = self.find_ele(By.CLASS_NAME,"ui_content")
+            # alert = self.find_ele(By.CLASS_NAME,"ui_content")
+            alert=self.find_elem(
+                    self.driver.find_element_by_class_name("ui_content"))
             re = alert.find_element_by_class_name("ft_20")
+            sleep(0.5)
             msg = re.text
             sleep(1)
+            log(msg)
             return msg
         except:
             # print(u"未找到弹出框")
