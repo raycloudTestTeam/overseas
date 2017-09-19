@@ -43,6 +43,7 @@ def link_text():
     driver.find_element_by_partial_link_text("部分text_vaule")
 
 def css(): # css的速度比xpath快
+    # 其他的定位可以参考css选择器 http://www.w3school.com.cn/cssref/css_selectors.asp
     driver.find_element_by_css_selector("#id") # id属性定位
     driver.find_element_by_css_selector(".class_value") # class属性定位
     driver.find_element_by_css_selector("input") # 根据标签名定位
@@ -63,3 +64,4 @@ def css(): # css的速度比xpath快
     driver.find_element_by_css_selector("input.s_ipt[name='wd']") # input标签下class为s_ipt的所有元素下name=wd的元素
     #input标签下name属性为wd且maxlength为255的元素
     driver.find_element_by_css_selector("input[name='wd'][maxlength='255']")
+    driver.find_element_by_css_selector("div:nth-child(1)") # 找到父元素下的第一个子元素

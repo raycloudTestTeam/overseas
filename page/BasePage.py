@@ -22,7 +22,7 @@ class Action(object):
     def __init__(self,driver):
         self.driver = driver
 
-    # 重写元素定位方法 再次封装
+    # 重写元素定位方法 再次封装 -作废
     def find_ele(self,*loc):
         try:
             WebDriverWait(self.driver,5,0.5).until(lambda driver:driver.find_element(*loc).is_displayed())
@@ -30,10 +30,10 @@ class Action(object):
         except:
             logging.info("元素：%s 未找到"%loc)
             pass
-    # 等待元素加载显性等待（重写）
+    # 等待元素加载显性等待- new
     def find_elem(self,ele):
         try:
-            WebDriverWait(self.driver, 10, 0.5).until(lambda x: ele.is_displayed())
+            WebDriverWait(self.driver, 10, 1).until(lambda x: ele.is_displayed())
             return ele
         except:
             print(str(sys.exc_info()))
@@ -49,7 +49,7 @@ class Action(object):
         self.driver.execute_script(js)
 
 
-    # 定义菜单栏点击
+    # 定义菜单栏点击-作废
     def menu_click(self,**kwargs):
         try:
             if kwargs['type'] == "top":
@@ -63,12 +63,19 @@ class Action(object):
         except:
             logging.error(u"%s 元素未找到，弹出框报错：%s" % (kwargs["name"],self.alert_msg()))
 
-    # 顶部菜单栏操作
+    # 顶部菜单栏操作 - new
+    def top_menu(self,menu):
+        try:
+            nav = self.find_elem(self.driver.find_element_by_class_name("site-nav"))
+            nav.find_element_by_link_text(menu).click()
+            sleep(1)
+            log(u"进入-%s-模块" %menu)
+        except:
+            log(u"%s 菜单点击失败" % menu)
 
-    # 报错弹出框内容获取
+    # 报错弹出框/成功弹出框内容获取
     def alert_msg(self):
         try:
-            # alert = self.find_ele(By.CLASS_NAME,"ui_content")
             alert=self.find_elem(
                     self.driver.find_element_by_class_name("ui_content"))
             re = alert.find_element_by_class_name("ft_20")
@@ -106,4 +113,20 @@ class Action(object):
         self.driver.switch_to.window(self.driver.window_handles[0])
         sleep(1)
         log(u"%s -- 页面打开:%s" % (self.driver.title,self.alert_msg()))
+
+    # 统一的弹出确认框-确认 or 取消 -new
+    def make_ok(self,t="OK"):
+        dialog = self.find_elem(
+                self.driver.find_element_by_class_name("ui_dialog"))
+        content = dialog.find_element_by_class_name("ui_content")
+        print(content)
+        log(content)
+        if t =="OK":
+
+            dialog.find_element_by_class_name("ui_state_highlight").click()
+            log("确定")
+        else:
+            dialog.find_element_by_css_selector("input[value=u'取消']").click()
+            log("取消")
+
 

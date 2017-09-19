@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 #@Author : Wu
-#@Time : 2017/9/18 15:47
-#@File : order_test_case.py
-#@remark : 订单测试用例
-
+#@Time : 2017/9/19 15:41
+#@File : iamge_test_case.py
+#@remark : 图片模块测试用例
 import unittest
 from driver import *
 from login import *
-from page.order.orderbasepage import *
-from page.order.payendpage import *
-class OrderTestCase(unittest.TestCase):
+from page.image.localimagepage import *
+class ImageTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -22,17 +20,12 @@ class OrderTestCase(unittest.TestCase):
 
         else:
             sleep(2)
-
-
     def test_1(self):
-        payend = PayEndPage(self.driver)
-        payend.top_menu("订单")
-        payend.menu("待处理订单")
-        payend.more_button(u"新建订单")
-        payend.create_order()
-        payend.find_elem(self.driver.find_element_by_name("allId")).click()
-        PayEndPage(self.driver).assign_user("魔法小圆")
-        # OrderAction(self.driver).assign_user("魔法小圆")
+        localimage = LocalImagePage(self.driver)
+        localimage.top_menu("图片")
+        # localimage.nth_test()
+        localimage.search(content="11")
+        localimage.search(ty=2)
         print("OK")
 
     @classmethod

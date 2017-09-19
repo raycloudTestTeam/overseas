@@ -6,6 +6,17 @@
 from page.BasePage import *
 class OrderAction(Action):
 
+    # 左侧菜单栏点击
+    def menu(self,name):
+        try:
+            me = self.find_elem(
+                    self.driver.find_element_by_xpath("//a[contains(text(),'"+name+"') and @class='one-menu']"))
+            me.click()
+            sleep(1)
+            log(u"进入-%s-" % name)
+        except:
+            print(str(sys.exc_info()))
+            log(u"%s-进入失败" % name)
     # 搜索输入框 搜索
     def search(self,content):
         try:
@@ -47,13 +58,13 @@ class OrderAction(Action):
                     self.driver.find_element_by_css_selector("ul[class~='assign-list']"))
 
             user_list.find_element_by_link_text(name).click()
-            self.assign_user_sure()
+            self.make_ok()
             self.alert_msg()
-            log(u"订单指派结束")
+            log(u"订单指派成功结束")
         except:
-            print(u"订单指派按钮")
+            print(u"订单指派失败")
             log(u"订单指派给%s 失败" % name)
-    # 指派确认框点击
+    # 指派确认框点击 -- 作废，详情请见basepage 通用makeok
     def assign_user_sure(self,btn="ok"):
         dialog = self.find_elem(
                 self.driver.find_element_by_class_name("ui_dialog"))

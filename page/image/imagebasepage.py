@@ -6,4 +6,7 @@
 
 from page.BasePage import *
 class ImageAction(Action):
+    # 搜索内容，t为查询类型，content为内容
     pass
+
+

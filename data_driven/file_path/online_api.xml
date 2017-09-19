@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<api>
+    <json url="data/data/shopee/shop/getFocusShopList.json" type="GET" pars="pageSize=50,pageNo=1" result=""/>
+    <json url="data/data/industry/maxDate.json" type="POST" pars="" result=""/>
+    <json url="data/data/industry/allCat.json" type="POST" pars="" result=""/>
+    <json url="data/data/industry/queryCommonCat.json" type="POST" pars="" result=""/>
+    <json url="data/data/industry/detail.json" type="POST" pars="" result=""/>
+    <json url="data/data/industry/trend.json" type="POST" pars="" result=""/>
+    <json url="data/data/shopee/shop/search.json" type="GET" pars="" result=""/>
+    <json url="data/data/common/queryFilterCondition.json" type="GET" pars="" result=""/>
+    <json url="data/data/shopee/item/search.json" type="GET" pars="" result=""/>
+    <json url="data/data/common/labelManageShow.json" type="GET" pars="" result=""/>
+
+    <date>2</date>
+</api>
