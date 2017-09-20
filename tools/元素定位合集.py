@@ -55,13 +55,13 @@ def css(): # css的速度比xpath快
 
     driver.find_element_by_css_selector("span>input") # 父子定位元素
     # 组合定位元素
-    driver.find_element_by_css_selector("input#kw") # input标签下属性为kw的元素
-    driver.find_element_by_css_selector("input.s_ipt") # input 标签下，class为s_ipt的元素
-    driver.find_element_by_css_selector("input[name='wd']") # input标签下name属性为wd的元素
-    driver.find_element_by_css_selector("span>input.s_ipt") # span下的input标签下的class属性为s_ipt的元素
+    driver.find_element_by_css_selector("input#kw") # input标签属性为kw的元素
+    driver.find_element_by_css_selector("input.s_ipt") # input 标签，class为s_ipt的元素
+    driver.find_element_by_css_selector("input[name='wd']") # input标签name属性为wd的元素
+    driver.find_element_by_css_selector("span>input.s_ipt") # span下的input标签的class属性为s_ipt的元素
 
     # 多个属性组合
-    driver.find_element_by_css_selector("input.s_ipt[name='wd']") # input标签下class为s_ipt的所有元素下name=wd的元素
+    driver.find_element_by_css_selector("input.s_ipt[name='wd']") # input标签下class为s_ipt的name=wd的元素
     #input标签下name属性为wd且maxlength为255的元素
     driver.find_element_by_css_selector("input[name='wd'][maxlength='255']")
     driver.find_element_by_css_selector("div:nth-child(1)") # 找到父元素下的第一个子元素

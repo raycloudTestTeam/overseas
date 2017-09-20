@@ -2,7 +2,7 @@
 #@Author : Wu
 #@Time : 2017/8/23 14:19
 #@File : s_shopme_page.py
-#@remark : 虾皮数据-关注的店铺页面
+#@remark : 虾皮数据-关注的店铺页面-作废
 from page.data.databasepage import *
 
 class SShopMePage(DataAction):

@@ -2,7 +2,7 @@
 #@Author : Wu
 #@Time : 2017/8/24 15:14
 #@File : s_itemdetailpage.py
-#@remark : 产品详情页  (拼接url进入页面)
+#@remark : 产品详情页  (拼接url进入页面)-作废
 
 from page.data.databasepage import *
 class SItemDetailPage(DataAction):

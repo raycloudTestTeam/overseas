@@ -2,7 +2,7 @@
 #@Author : Wu
 #@Time : 2017/8/23 10:36
 #@File : databasepage.py
-#@remark : 数据模块通用操作类
+#@remark : 数据模块通用操作类-作废
 from page.BasePage import *
 from selenium.webdriver.common.by import  By
 from data_driven.txthandle import *

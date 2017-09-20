@@ -2,7 +2,7 @@
 #@Author : Wu
 #@Time : 2017/8/23 15:29
 #@File : s_item_page.py
-#@remark : 产品检索页面
+#@remark : 产品检索页面-作废
 from page.data.databasepage import *
 import logging
 from time import sleep

@@ -2,7 +2,7 @@
 #@Author : Wu
 #@Time : 2017/8/24 15:12
 #@File : s_shopdetailpage.py
-#@remark : 店铺详情页
+#@remark : 店铺详情页-作废
 from page.data.databasepage import *
 
 class SShopDetailPage(DataAction):

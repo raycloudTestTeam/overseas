@@ -2,7 +2,7 @@
 #@Author : Wu
 #@Time : 2017/8/23 10:14
 #@File : 1.py
-#@remark : 店铺检索页面（数据有个很尴尬的点，每点一个菜单加载内容，之前的内容不消失，会导致页面元素定位问题）
+#@remark : 店铺检索页面（数据有个很尴尬的点，每点一个菜单加载内容，之前的内容不消失，会导致页面元素定位问题）-作废
 
 from page.data.databasepage import *
 from data_driven.log import *

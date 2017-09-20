@@ -7,7 +7,7 @@
 import unittest
 from driver import *
 from login import *
-from page.data.wish_data import *
+from page.data.wish_data_index import *
 class WishDataTestCase(unittest.TestCase):
 
     @classmethod
@@ -26,9 +26,13 @@ class WishDataTestCase(unittest.TestCase):
         cls.driver.quit()
 
     def test_1(self):
-        wish_data = WishDataAction(self.driver)
-        wish_data.top_menu(u"数据")
-        wish_data.search(name="店铺", content="53b7bace46188e74de5f7e7d")
+        wish_data = WishDataIndexPage(self.driver)
+        #wish_data.top_menu(u"数据")
+        #wish_data.search(name="店铺", content="53b7bace46188e74de5f7e7d")
+        wish_data.bread_value()
+        wish_data.product_all_table()
+        wish_data.get_amount7_table()
+        wish_data.open_amount7_product("11~50")
         sleep(4)
         print("OK")
 

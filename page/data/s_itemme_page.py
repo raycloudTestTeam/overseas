@@ -2,7 +2,7 @@
 #@Author : Wu
 #@Time : 2017/8/23 16:12
 #@File : s_itemme_page.py
-#@remark : 关注的产品页面
+#@remark : 关注的产品页面-作废
 from page.data.databasepage import *
 from page.data.s_item_page import *
 
