@@ -5,8 +5,15 @@
 #@remark : wish数据模块通用
 from page.BasePage import *
 class WishDataAction(Action):
-
     search_tabs ={"产品":"product","店铺":"shop","标签":"tag","行业":"industry"}
+
+    #左侧菜单选择(写到这里了！)
+    def left_menu(self,menu_name):
+        menu_panel = self.driver.find_elements_by_css_selector("[class~='wish_data-col-side']>div")
+
+
+
+
 
     # 页面点击动态加载-数据所有元素定位需要调用这个先
     def col_main(self):
@@ -25,8 +32,8 @@ class WishDataAction(Action):
     def bread_value(self):
         bread = self.bread()
         value = bread.find_element_by_class_name("pull-left").text
-        print(value)
-        log(value)
+        print(u"进入-"+value)
+        #log(value)
 
     #刷新当前页面
     def refresh(self):
@@ -57,10 +64,10 @@ class WishDataAction(Action):
         try:
             self.search_change(name)
             self.input_content(content)
-            log(u"%s 搜索 %s 成功" % (name,content))
+            #log(u"%s 搜索 %s 成功" % (name,content))
         except:
             print(str(sys.exc_info()))
-            log(u"%s 搜索 %s 失败" % (name,content))
+            #log(u"%s 搜索 %s 失败" % (name,content))
     # 搜索内容部分 -end
 
 

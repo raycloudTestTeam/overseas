@@ -20,19 +20,29 @@ class WishDataTestCase(unittest.TestCase):
             cls.tearDownClass()
         else:
             sleep(2)
+        print(u"wish数据开始")
 
     @classmethod
     def tearDownClass(cls):
+        print(u"wish数据结束")
         cls.driver.quit()
 
-    def test_1(self):
-        wish_data = WishDataIndexPage(self.driver)
+    def test_index(self):
+        print(u"wish数据-全站分析-start")
+        dara_index = WishDataIndexPage(self.driver)
+        dara_index.bread_value()
+        dara_index.all_count(table_type='product')
+        dara_index.amount7_table(table_type='product')
+        dara_index.script("document.documentElement.scrollTop=1000")
+        dara_index.all_count(table_type='shop')
+        dara_index.amount7_table(table_type='shop')
+        print(u"wish数据-全站分析-end")
         #wish_data.top_menu(u"数据")
         #wish_data.search(name="店铺", content="53b7bace46188e74de5f7e7d")
-        wish_data.bread_value()
-        wish_data.product_all_table()
-        wish_data.get_amount7_table()
-        wish_data.open_amount7_product("11~50")
+        #wish_data.bread_value()
+        #wish_data.product_all_table()
+        #wish_data.get_amount7_table()
+        #wish_data.open_amount7_product("11~50")
         sleep(4)
         print("OK")
 
