@@ -2,18 +2,15 @@
 #@Author : Wu
 #@Time : 2017/9/19 16:58
 #@File : wish_data.py
-#@remark : wish数据模块通用
+#@remark : wish数据模块通用元素操作
 from page.BasePage import *
 class WishDataAction(Action):
+
     search_tabs ={"产品":"product","店铺":"shop","标签":"tag","行业":"industry"}
 
     #左侧菜单选择(写到这里了！)
     def left_menu(self,menu_name):
         menu_panel = self.driver.find_elements_by_css_selector("[class~='wish_data-col-side']>div")
-
-
-
-
 
     # 页面点击动态加载-数据所有元素定位需要调用这个先
     def col_main(self):
